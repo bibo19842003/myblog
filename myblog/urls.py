@@ -19,6 +19,8 @@ from article import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('password-reset/', include('password_reset.urls')),
+
     path('article/', include('article.urls', namespace='article')),
     path('', views.article_list, name='index'),
 
