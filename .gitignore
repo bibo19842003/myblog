@@ -2,4 +2,6 @@
 *.sqlite3
 *.swp
 */migrations/*
+avatar/*
+media/*
 
