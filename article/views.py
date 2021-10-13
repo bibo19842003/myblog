@@ -59,6 +59,11 @@ def article_list(request):
 def article_detail(request, id):
     # 取出相应的文章
     article = ArticlePost.objects.get(id=id)
+
+    # 浏览量 +1
+    article.total_views += 1
+    article.save(update_fields=['total_views'])
+
     # 需要传递给模板的对象
     context = { 'article': article }
     # 载入模板，并返回context对象

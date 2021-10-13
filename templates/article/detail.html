@@ -20,6 +20,9 @@
           · <a href="#" onclick="confirm_delete()">删除文章</a>
           · <a href="{% url "article:article_update" article.id %}">编辑文章</a>
         </div>
+        <div>
+            浏览：{{ article.total_views }}
+        </div>
         <!-- 文章正文 -->
         <div class="col-12">
             <p>{{ article.body }}</p>
