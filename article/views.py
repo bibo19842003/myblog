@@ -79,6 +79,7 @@ def article_delete(request, id):
     return redirect("article:article_list")
 
 
+@login_required(login_url='/userprofile/login/')
 def article_update(request, id):
     """
     通过POST方法提交表单，更新titile、body字段
@@ -88,6 +89,11 @@ def article_update(request, id):
 
     # 获取需要修改的具体文章对象
     article = ArticlePost.objects.get(id=id)
+
+    # 过滤非作者的用户
+    if request.user != article.author:
+        return HttpResponse("抱歉，你无权修改这篇文章。")
+
     # 判断用户是否为 POST 提交表单数据
     if request.method == "POST":
         # 将提交的数据赋值到表单实例中
