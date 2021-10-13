@@ -27,6 +27,8 @@ urlpatterns = [
     path('', views.article_list, name='index'),
 
     path('userprofile/', include('userprofile.urls', namespace='userprofile')),
+
+    path('comment/', include('comment.urls', namespace='comment')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

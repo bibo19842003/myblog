@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'password_reset', 
     'article',
     'userprofile',
+    'comment',
 ]
 
 MIDDLEWARE = [

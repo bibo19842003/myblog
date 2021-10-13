@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Q
+from comment.models import Comment
 
 
 @login_required(login_url='/userprofile/login/')
@@ -80,12 +81,15 @@ def article_detail(request, id):
     # 取出相应的文章
     article = ArticlePost.objects.get(id=id)
 
+    # 取出文章评论
+    comments = Comment.objects.filter(article=id)
+
     # 浏览量 +1
     article.total_views += 1
     article.save(update_fields=['total_views'])
 
     # 需要传递给模板的对象
-    context = { 'article': article }
+    context = { 'article': article, 'comments': comments }
     # 载入模板，并返回context对象
     return render(request, 'article/detail.html', context)
 
